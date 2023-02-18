@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %}
+
+{% block content %}
+
+<div class="container" style="margin-top: 8%;">
+    <div class="col-md-12 col-md-offset-3">
+        <div class="row">
+            <div class="text-center text-muted">
+                <h1>URL Shortner</h1>
+                <p>Enter Url</p>
+            </div>
+            <form method="POST" class="mb-4">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control me-2" type="text" name="url-shortner" placeholder="URL">
+                        <span class="input-group-btn">
+                            <button class="btn btn-outline-secondary" type="submit">Search</button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+
+            <div class="pt-4">
+                {% for slugurl in urlData %}
+                <div class="d-flex justify-content-between mb-1">
+                    <span>{{ slugurl.url|truncatechars:80 }}</span>
+                    <span><a href="{% url 'shorten' slug=slugurl.slug %}" target="_blank">
+                            <button type="button" class="btn btn-secondary">{% url 'shorten' slug=slugurl.slug %}</button>
+                        </a>
+                    </span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
