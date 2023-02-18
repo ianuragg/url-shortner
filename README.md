@@ -1,4 +1,4 @@
-# url-shortner
+# URL Shortner
 Url Shortner is a web application built on python based framework called Django.
 
 <h2> How to Use: </h2>
